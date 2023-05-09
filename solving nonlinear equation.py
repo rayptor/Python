@@ -33,9 +33,9 @@ def Solve(
         if np.isclose(fxn, 0.0, atol=tol) == True:
             break
         dfxn = df(xn)
-        yn = np.longdouble(xo - fxn/dfxn)
-        fyn = f(yn)
         try:
+            yn = np.longdouble(xo - fxn/dfxn)
+            fyn = f(yn)
             tn = np.longdouble(fyn/fxn)
             zn = np.longdouble(yn - ((1.0+tn**2) * (1.0+2.0*tn+2.0*tn**2) \
                 + tn**2*(2.0-8.0*tn-2.0*tn**2)) * fyn/dfxn)
