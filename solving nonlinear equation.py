@@ -73,7 +73,7 @@ def Solve(
 
     return np.format_float_positional(np.longdouble(xn), unique=False, precision=dec)
 
-f = lambda x: x**7-np.sqrt(np.pi)*(2.0*x**2-4.0*x+2.0)+np.exp(x)-1.0
-df = lambda x: 7.0*x**6+ np.exp(x) - 4.0*np.sqrt(np.pi)*(x-1.0)
+f = lambda x: x**7 - np.sqrt(np.pi)*(2.0*x**2-4.0*x+2.0) + np.exp(x) - 1.0
+df = lambda x: 7.0*x**6 - 4.0*np.sqrt(np.pi)*(x-1.0) + np.exp(x)
 print("x^7-np.sqrt(pi)*(2*x^2-4*x+2)+np.exp(x)-1, x =", Solve(f, df, 0.5))
 # x^7-np.sqrt(pi)*(2*x^2-4*x+2)+np.exp(x)-1, x = 0.544025337130809784
