@@ -13,10 +13,12 @@
 
 import numpy as np
 import sys
+from typing import Callable, Generic, TypeVar, Union
+
 
 def Solve(
-    f: None,
-    df: None,
+    f: Callable,
+    df: Callable,
     x0: np.longdouble,
     k:int = 10,
     tol: np.longdouble = 1e-15
