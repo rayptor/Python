@@ -19,11 +19,13 @@ def Solve(
     df: callable,
     x0: np.longdouble,
     k:int = 10,
-    tol: np.longdouble = 1e-15
+    tol = np.finfo(np.float128).eps
     ) -> np.longdouble:
-    dec = np.finfo(np.longdouble).precision
+    
+    dec = np.finfo(np.float128).precision
     xo = x0
     xn = xo
+    
     if f == None or df == None:
         raise RuntimeError("Aucune fonction n'a été passée en argument.")
     if tol <= 0.0:
@@ -33,6 +35,7 @@ def Solve(
         if np.isclose(fxn, 0.0, atol=tol) == True:
             break
         dfxn = df(xn)
+        
         try:
             yn = np.longdouble(xo - fxn/dfxn)
             fyn = f(yn)
@@ -51,6 +54,7 @@ def Solve(
         except ZeroDivisionError:
             print("fyn/fxn !")
             sys.exit(1)
+            
         xn1 = np.longdouble((1.0+tn) * (2.0*tn+tn**3) + 4.0*tn**2 \
             - tn**3 - tn**4 - 2.0*sn**2)
         xn2 = np.longdouble(2.0*tn*rn + 2.0*sn*un + 24.0*tn**4 + tn*un)
@@ -64,7 +68,9 @@ def Solve(
             xn4 = np.longdouble((2.0*un+6*un**2)/(1.0+un) + (sn+2.0*sn**2) \
                 / (1.0+sn**2) + (6.0*tn**2*rn+6.0*tn**3*rn-4.0*sn**2*un) \
                 / (1.0+tn))
+                
         xn = np.longdouble(wn - (xn1-xn2+xn3-xn4) * fwn/dfxn)
+        
         if np.less(np.fabs(xn-xo), tol) == True:
             break
         xo = xn
