@@ -61,7 +61,7 @@ def sor(
 
     return x1.astype(np.float64)
 
-# https://www.joezhouman.com/2021/11/21/NumericalAnalysisIteration.html
+# 
 def aor(
     a: np.ndarray,
     b: np.ndarray,
